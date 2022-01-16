@@ -1,6 +1,5 @@
 const express = require('express');
 const db = require('./db/connection');
-const inputCheck = require('./utils/inputCheck');
 const apiRoutes = require('./routes/apiRoutes');
 
 

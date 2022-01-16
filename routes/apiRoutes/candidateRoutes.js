@@ -51,9 +51,9 @@ router.post('/candidate', ({ body }, res) => {
         res.status(400).json({ error: errors });
         return;
     }
-    const sql = `INSERT INTO candidates (first_name, last_name, industry_connected)
-            VALUES (?,?,?)`;
-    const params = [body.first_name, body.last_name, body.industry_connected];
+    const sql = `INSERT INTO candidates (first_name, last_name, industry_connected, party_id)
+            VALUES (?,?,?,?)`;
+    const params = [body.first_name, body.last_name, body.industry_connected, body.party_id];
 
     db.query(sql, params, (err, result) => {
         if (err){
@@ -103,7 +103,7 @@ router.delete('/candidate/:id', (req, res) => {
 
 db.query(sql, params, (err, result) => {
     if (err){
-        res.statusMessage(400).json({ error: res.message });
+        res.status(400).json({ error: res.message });
     } else if(!result.affectedRows){
         res.json({
             message: 'Candidate not found'
